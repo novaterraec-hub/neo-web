@@ -1,6 +1,5 @@
 ---
-// src/pages/index.astro - NEO MASTER v4.5 (Blanco Quirúrgico Edition)
-// Optimización: Literaria (Sin Multimedia)
+// src/pages/index.astro - NEO MASTER v4.6 (Visual Edition)
 ---
 
 <!DOCTYPE html>
@@ -17,118 +16,47 @@
             --accent: #ccbb99; 
             --line: rgba(255, 255, 255, 0.1); 
             --mono: 'JetBrains Mono', monospace;
-            /* Definición del Cian Quirúrgico */
             --scan-color: rgba(200, 230, 255, 0.8);
             --scan-glow: rgba(100, 180, 255, 0.2);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; cursor: crosshair; }
         body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
 
-        /* --- MENÚ DE COMANDOS --- */
-        #cmd-menu { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
-            background: rgba(0,0,0,0.98); z-index: 5000; display: none; 
-            padding: 80px 5%; backdrop-filter: blur(20px); border: 1px solid var(--line);
-        }
-        .menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 60px; margin-top: 60px; }
-        .menu-cat h4 { font-family: var(--mono); color: var(--accent); font-size: 0.7rem; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 3px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
-        .menu-link { display: block; font-size: 2.2rem; font-weight: 900; color: #fff; text-decoration: none; text-transform: uppercase; margin-bottom: 12px; opacity: 0.4; transition: 0.4s; }
-        .menu-link:hover { opacity: 1; color: var(--accent); transform: translateX(15px); }
-
         /* --- NAVEGACIÓN --- */
         nav { position: fixed; top: 0; width: 100%; height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; border-bottom: 1px solid var(--line); z-index: 1000; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px); }
         .nav-btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 10px 20px; font-family: var(--mono); font-size: 0.7rem; cursor: pointer; transition: 0.3s; }
+        .nav-logo { height: 40px; filter: drop-shadow(0 0 5px var(--scan-glow)); }
 
-        /* --- EFECTO SCANNER QUIRÚRGICO Y RELIEVE --- */
-        .tactile-box {
-            position: relative;
-            overflow: hidden;
-            background: #000;
-            box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.03);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .tactile-box::before {
-            content: ""; position: absolute; top: -100%; left: 0; width: 100%; height: 60%;
-            background: linear-gradient(to bottom, transparent, var(--scan-glow), var(--scan-color), transparent);
-            opacity: 0; z-index: 1; pointer-events: none;
-        }
-        .tactile-box:hover { 
-            box-shadow: inset 0 0 30px rgba(200, 230, 255, 0.08);
-            background: rgba(255,255,255,0.01);
-        }
-        .tactile-box:hover::before { 
-            opacity: 1; animation: scan-line 2.5s infinite; 
-        }
-
-        @keyframes scan-line { 
-            0% { top: -100%; } 
-            100% { top: 150%; } 
-        }
-
-        /* --- SECCIONES PRINCIPALES --- */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 0 5%; border-bottom: 1px solid var(--line); }
-        .hero-title { font-size: clamp(3rem, 12vw, 10rem); font-weight: 900; text-transform: uppercase; line-height: 0.85; }
+        /* --- HERO SECTION --- */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; border-bottom: 1px solid var(--line); text-align: center; }
+        .hero-title { font-size: clamp(3rem, 12vw, 8rem); font-weight: 900; text-transform: uppercase; line-height: 0.85; margin-top: 20px; }
         .hero-title .outline { color: transparent; -webkit-text-stroke: 1.5px var(--text); }
+        .master-photo { width: 180px; height: 180px; border-radius: 50%; border: 2px solid var(--accent); object-fit: cover; margin-bottom: 20px; box-shadow: 0 0 30px rgba(204, 187, 153, 0.2); }
 
-        .data-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
-        .data-item { padding: 50px 5%; border-right: 1px solid var(--line); text-align: center; }
-        .data-item h3 { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); margin-bottom: 10px; opacity: 0.6; }
-        .data-item p { font-weight: 700; font-size: 1rem; text-transform: uppercase; }
+        /* --- SCANNER EFFECT --- */
+        .tactile-box { position: relative; overflow: hidden; background: #000; box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.03); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .tactile-box::before { content: ""; position: absolute; top: -100%; left: 0; width: 100%; height: 60%; background: linear-gradient(to bottom, transparent, var(--scan-glow), var(--scan-color), transparent); opacity: 0; z-index: 1; pointer-events: none; }
+        .tactile-box:hover::before { opacity: 1; animation: scan-line 2.5s infinite; }
+        @keyframes scan-line { 0% { top: -100%; } 100% { top: 150%; } }
 
-        .allies-section { padding: 100px 5%; border-bottom: 1px solid var(--line); }
-        .allies-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); margin-top: 50px; border: 1px solid var(--line); }
-        .ally-box { height: 160px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-weight: 700; font-size: 1.1rem; opacity: 0.4; }
-        .ally-box:hover { opacity: 1; }
+        /* --- PILARES --- */
+        .pilar-card { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; padding: 0 8%; background: var(--bg); border-top: 1px solid var(--line); }
+        .pilar-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 50px; }
+        .pilar-title { font-size: 3.5rem; font-weight: 900; text-transform: uppercase; line-height: 0.9; margin-bottom: 25px; }
 
-        /* --- STACKING PILARES --- */
-        .stack-wrapper { position: relative; }
-        .pilar-card { 
-            position: sticky; top: 0; height: 100vh; width: 100%; 
-            display: flex; flex-direction: column; justify-content: center;
-            padding: 0 8%; background: var(--bg); border-top: 1px solid var(--line);
-            box-shadow: 0 -30px 60px rgba(0,0,0,0.8);
-        }
-        .pilar-num { position: absolute; right: 5%; bottom: 5%; font-size: 22rem; font-weight: 900; opacity: 0.03; font-family: var(--mono); pointer-events: none; }
-        .pilar-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 100px; }
-        .pilar-title { font-size: clamp(2.5rem, 5.5vw, 5rem); font-weight: 900; text-transform: uppercase; line-height: 0.9; margin-bottom: 35px; }
-        .sci-box { padding: 25px; border: 1px solid var(--line); background: rgba(255,255,255,0.02); border-left: 4px solid var(--scan-color); }
-
-        .status-footer { padding: 120px 5%; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: flex-end; }
+        .status-footer { padding: 80px 5%; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
     </style>
 </head>
 <body>
 
-    <div id="cmd-menu">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-family: var(--mono); color: var(--accent);">NEO_OS // DIRECTORY_V4.5</span>
-            <button class="nav-btn" onclick="toggleMenu()">[ CLOSE ]</button>
-        </div>
-        <div class="menu-grid">
-            <div class="menu-cat">
-                <h4>Biología</h4>
-                <a href="#" class="menu-link">Neurociencia</a>
-                <a href="#" class="menu-link">Epigenética</a>
-            </div>
-            <div class="menu-cat">
-                <h4>Arquitectura</h4>
-                <a href="#pilar1" class="menu-link" onclick="toggleMenu()">Los 5 Pilares</a>
-                <a href="#" class="menu-link">NPE Core</a>
-            </div>
-            <div class="menu-cat">
-                <h4>Sistemas</h4>
-                <a href="#" class="menu-link">Juegos</a>
-                <a href="#" class="menu-link">Privado</a>
-            </div>
-        </div>
-    </div>
-
     <nav>
-        <div style="font-weight: 900; font-family: var(--mono);">NEO® <span style="opacity:0.3;">v4.5</span></div>
-        <button class="nav-btn" onclick="toggleMenu()">[ ACCESS_MENU ]</button>
+        <img src="/neo-web/img/logo-neo.png" alt="NEO Logo" class="nav-logo">
+        <div style="font-weight: 900; font-family: var(--mono); color: var(--accent);">MASTER_OS <span style="opacity:0.3;">v4.6</span></div>
     </nav>
 
     <main>
         <section class="hero">
+            <img src="/neo-web/img/foto-neo.png" alt="Master NEO" class="master-photo">
             <div class="hero-title">
                 <div style="color: var(--accent);">Neo</div>
                 <div class="outline">Programación</div>
@@ -136,93 +64,42 @@
             </div>
         </section>
 
-        <section class="data-grid">
-            <div class="data-item tactile-box"><h3>MÉTODO</h3><p>NPE CORE</p></div>
-            <div class="data-item tactile-box"><h3>BASE</h3><p>BIOLÓGICA</p></div>
-            <div class="data-item tactile-box"><h3>STATUS</h3><p>ONLINE</p></div>
-            <div class="data-item tactile-box" style="border:none"><h3>SYS_OP</h3><p>2026</p></div>
-        </section>
-
-        <section class="allies-section">
-            <span style="font-family: var(--mono); color: var(--accent); font-size: 0.7rem; letter-spacing: 4px;">SYSTEM_INTEGRATIONS</span>
-            <h2 style="font-size: 3rem; font-weight: 900; text-transform: uppercase; margin-top: 10px;">Aliados del Sistema</h2>
-            <div class="allies-grid">
-                <div class="ally-box tactile-box">YIHI</div>
-                <div class="ally-box tactile-box">ENGINE</div>
-                <div class="ally-box tactile-box">CORE</div>
-                <div class="ally-box tactile-box">NEURAL</div>
+        <section style="display: grid; grid-template-columns: repeat(2, 1fr); border-bottom: 1px solid var(--line);">
+            <div class="tactile-box" style="padding: 60px; border-right: 1px solid var(--line);">
+                <h3 style="font-family: var(--mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 15px;">// MANIFIESTO</h3>
+                <p style="font-size: 1.2rem; opacity: 0.8; line-height: 1.4;">Reprograma tu narrativa interna. Transforma patrones reactivos en respuestas conscientes desde la arquitectura biológica.</p>
+            </div>
+            <div class="tactile-box" style="padding: 60px;">
+                <h3 style="font-family: var(--mono); color: var(--accent); font-size: 0.8rem; margin-bottom: 15px;">// SISTEMA</h3>
+                <p style="font-size: 1.2rem; opacity: 0.8; line-height: 1.4;">Ecuador 2026. Un nuevo estándar humano diseñado para la soberanía mental y emocional.</p>
             </div>
         </section>
 
-        <div class="stack-wrapper">
-            <section class="pilar-card" id="pilar1">
-                <div class="pilar-num">01</div>
-                <div class="pilar-grid">
-                    <div>
-                        <span style="font-family:var(--mono); color:var(--accent); font-size:0.7rem; letter-spacing:5px;">NEO_PHASE // 01</span>
-                        <h2 class="pilar-title">Entrenar la<br><span style="color:var(--accent)">Atención</span></h2>
-                        <div class="sci-box">
-                            <span style="color:var(--scan-color); font-family:var(--mono); font-size:0.6rem;">// NEURO_DATA_STREAM</span>
-                            <p style="font-size:0.85rem; opacity:0.6; margin-top:10px;">Menor reactividad de la amígdala y mayor implicación de la corteza prefrontal.</p>
-                        </div>
-                    </div>
-                    <div style="border-left: 1px solid var(--line); padding-left: 45px;">
-                        <ul style="list-style:none; line-height:2.4; opacity:0.7; font-size: 0.95rem;">
-                            <li>→ Respiración como ancla</li>
-                            <li>→ Detección de dispersión</li>
-                            <li>→ Observación sin juicio</li>
-                            <li>→ 30 días de progresión</li>
-                        </ul>
-                    </div>
+        <section class="pilar-card" id="pilar1">
+            <div class="pilar-grid">
+                <div>
+                    <span style="font-family:var(--mono); color:var(--accent); font-size:0.7rem; letter-spacing:5px;">PHASE_01</span>
+                    <h2 class="pilar-title">Entrenar la<br><span style="color:var(--accent)">Atención</span></h2>
+                    <p style="opacity:0.6; font-size: 1.1rem;">La atención es el puntero de tu sistema operativo. Donde pones el foco, instalas energía.</p>
                 </div>
-            </section>
-
-            <section class="pilar-card" id="pilar2" style="background:#050505">
-                <div class="pilar-num">02</div>
-                <div class="pilar-grid">
-                    <div><h2 class="pilar-title">Lógica<br><span style="color:var(--accent)">Biológica</span></h2><p style="opacity:0.6; max-width:500px; font-size: 1.1rem;">Entiende los ritmos y patrones de tu sistema nervioso para elegir diferente.</p></div>
+                <div style="border-left: 1px solid var(--line); padding-left: 40px;">
+                    <ul style="list-style:none; line-height:2.5; font-family: var(--mono); font-size: 0.9rem;">
+                        <li>→ Respiración Consciente</li>
+                        <li>→ Anclaje Sensorial</li>
+                        <li>→ Mapeo de Distractores</li>
+                    </ul>
                 </div>
-            </section>
-
-            <section class="pilar-card" id="pilar3">
-                <div class="pilar-num">03</div>
-                <div class="pilar-grid">
-                    <div><h2 class="pilar-title">Trampas<br>del <span style="color:var(--accent)">Ego</span></h2><p style="opacity:0.6; max-width:500px; font-size: 1.1rem;">Mapeo de estrategias de control y aplicación de protocolo NAV.</p></div>
-                </div>
-            </section>
-
-            <section class="pilar-card" id="pilar4" style="background:#050505">
-                <div class="pilar-num">04</div>
-                <div class="pilar-grid">
-                    <div><h2 class="pilar-title">Mapas<br><span style="color:var(--accent)">Neurales</span></h2><p style="opacity:0.6; max-width:500px; font-size: 1.1rem;">Construcción neuroquímica en postura de poder para fijar estados futuros.</p></div>
-                </div>
-            </section>
-
-            <section class="pilar-card" id="pilar5">
-                <div class="pilar-num">05</div>
-                <div class="pilar-grid">
-                    <div><h2 class="pilar-title">Evolución<br><span style="color:var(--accent)">Biomental</span></h2><p style="opacity:0.6; max-width:500px; font-size: 1.1rem;">Impacto colectivo a través de una identidad autorregulada y humana.</p></div>
-                </div>
-            </section>
-        </div>
-
-        <section class="status-footer">
-            <h2 style="font-size: 5rem; font-weight: 900; line-height: 0.8; text-transform: uppercase;">¿Iniciamos la<br><span style="color: var(--accent);">Reprogramación?</span></h2>
-            <div style="font-family: var(--mono); font-size: 0.8rem; text-align: right;">
-                <p>KERNEL_v4.5</p>
-                <p style="color:var(--scan-color)">SYSTEM_AUTH_CIAN</p>
-                <p>2026 // ECUADOR</p>
             </div>
         </section>
     </main>
 
-    <script is:inline>
-        function toggleMenu() {
-            const menu = document.getElementById('cmd-menu');
-            const isVisible = menu.style.display === 'block';
-            menu.style.display = isVisible ? 'none' : 'block';
-            document.body.style.overflow = isVisible ? 'auto' : 'hidden';
-        }
-    </script>
+    <footer class="status-footer">
+        <h2 style="font-size: 2rem; font-weight: 900; text-transform: uppercase;">NEO_2026</h2>
+        <div style="font-family: var(--mono); font-size: 0.7rem; text-align: right; opacity: 0.5;">
+            <p>CONEXIÓN SEGURA // CIFRADO CIAN</p>
+            <p>NOVATERRA ECUADOR</p>
+        </div>
+    </footer>
+
 </body>
 </html>
