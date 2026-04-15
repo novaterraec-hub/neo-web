@@ -3,7 +3,11 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "build": "astro build"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
   },
   "dependencies": {
     "astro": "^5.0.0",
