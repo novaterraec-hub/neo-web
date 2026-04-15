@@ -1,21 +1,16 @@
 {
-  "name": "neo-programacion-emocional",
+  "name": "neo-web",
   "version": "0.0.1",
-  "private": true,
   "type": "module",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "typecheck": "astro check"
+    "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/react": "^5.0.0",
-    "astro": "^6.1.2",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
-  },
-  "devDependencies": {
-    "@astrojs/check": "^0.9.7"
+    "astro": "^5.0.0",
+    "@astrojs/react": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }
